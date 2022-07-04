@@ -8,7 +8,6 @@ for i in range(10):
         if not(i == 0 and j < 2):
             print(', ', end='')
 
-        print("{}".format(i), end='')
-        print("{}".format(j), end='')
+        print("{}{}".format(i, j), end='')
 
 print('\n')

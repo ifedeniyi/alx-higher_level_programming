@@ -5,7 +5,10 @@ for i in range(10):
         if i > j or i == j:
             continue
 
+        if not(i == 0 and j < 2):
+            print(', ', end='')
+
         print("{}".format(i), end='')
-        print("{}".format(j), end=', ')
+        print("{}".format(j), end='')
 
 print('\n')

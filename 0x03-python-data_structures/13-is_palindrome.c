@@ -1,4 +1,7 @@
 #include "lists.h"
+#include <stdbool.h>
+
+int check_palindrome(listint_t **left_ptr, listint_t *right_ptr);
 
 /**
  * is_palindrome - checks if linked list is a palindrome
@@ -8,39 +11,40 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *current = *head;
-	int arr_length = 0;
-	int *list_values;
-	int i = 0;
-	int j;
+	listint_t *left = *head;
+	listint_t *right = *head;
 
-	while (current != NULL)
+	return (check_palindrome(&left, right));
+}
+
+/**
+ * check_palindrome - Recursively check if list is a palindrome
+ *
+ * @left_ptr: double pointer to linked list head
+ * @right_ptr: pointer to linked list head
+ * Return: (true) if palindrome, (false) otherwise
+ */
+int check_palindrome(listint_t **left_ptr, listint_t *right_ptr)
+{
+	bool is_palin = true;
+
+	if (right_ptr == NULL)
 	{
-		arr_length++;
-		current = current->next;
+		return (true);
 	}
 
-	list_values = (int *)malloc(sizeof(int) * arr_length);
+	is_palin = check_palindrome(left_ptr, right_ptr->next);
 
-	current = *head;
-	while (current != NULL)
+	if (!is_palin)
 	{
-		list_values[i] = current->n;
-		current = current->next;
-		i++;
+		return (false);
 	}
 
-	current = *head;
-	for (j = arr_length - 1; j >= 0; j--)
+	if (right_ptr->n != (*left_ptr)->n)
 	{
-		if (list_values[j] != current->n)
-		{
-			free(list_values);
-			return (0);
-		}
-
-		current = current->next;
+		return (false);
 	}
-	free(list_values);
-	return (1);
+
+	*left_ptr = (*left_ptr)->next;
+	return (true);
 }

@@ -12,13 +12,11 @@ class Square:
     def __init__(self, size=0):
         self.size = size
 
-
     @property
     def size(self):
         """int: Size of the square."""
 
         return self.__size
-
 
     @size.setter
     def size(self, size):
@@ -28,7 +26,6 @@ class Square:
             raise ValueError("size must be >= 0")
         else:
             self.__size = size
-
 
     def area(self):
         """Find the area of the square instance.

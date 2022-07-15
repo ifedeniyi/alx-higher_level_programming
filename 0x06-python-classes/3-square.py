@@ -4,7 +4,7 @@
 
 class Square:
     """Square class that does nothing yet
-    
+
     Args:
         size (int): Size of square instance.
     """
@@ -16,7 +16,6 @@ class Square:
             raise ValueError("size must be >= 0")
         else:
             self.__size = size
-
 
     def area(self):
         """Compute area of square.

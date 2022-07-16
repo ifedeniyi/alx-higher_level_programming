@@ -34,7 +34,7 @@ class Node:
     @data.setter
     def data(self, data):
         if type(data) is not int:
-            raise TypeError("data must be an integer.")
+            raise TypeError("data must be an integer")
 
         self.__data = data
 

@@ -1,12 +1,18 @@
 #!/usr/bin/python3
-"""Exports a Square class"""
+"""Exports a Square class."""
 
 
 class Square:
-    """Square class that does some things
+    """Square class that does some things.
 
-    Arguments:
+    Args:
+        size (:obj:`int`, optional): Size of the square. Defaults to `0`.
+        position (:obj:`tuple` of :obj:`int`, optional): Coordinates for
+            x and y axis. Defaults to `(0, 0)`.
+
+    Attributes:
         size (int): Size of the square.
+        position (:obj:`tuple` of :obj:`int`): Coordinates for x and y axis.
     """
 
     def __init__(self, size=0, position=(0, 0)):
@@ -15,7 +21,12 @@ class Square:
 
     @property
     def size(self):
-        """int: Size of the square."""
+        """int: Size of the square.
+
+        Note:
+            Setter raises a TypeError if `size` is not an int,
+                and raises a ValueError if `size < 0`
+        """
 
         return self.__size
 
@@ -30,7 +41,13 @@ class Square:
 
     @property
     def position(self):
-        """tuple: Position as tuple"""
+        """:obj:`tuple` of :obj:`int`: coordinates for x and y axis.
+
+        Note:
+            Setter raises a TypeError if
+                : `position` is not a tuple of length 2,
+                : `position` elements are not positive integers
+        """
 
         return self.__position
 
@@ -55,6 +72,8 @@ class Square:
         return self.__size ** 2
 
     def my_print(self):
+        """Prints representation of the square using `#'s`"""
+
         if self.__size > 0:
             for i in range(self.__position[1]):
                 print("")

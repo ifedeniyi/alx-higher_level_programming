@@ -5,9 +5,15 @@
 class Node:
     """Defines a Node for a singly linked list
 
-    Arguments:
+    Args:
         data (int): value of a linked list node.
-        next_node (Node): Pointer to the next node of a linked list.
+        next_node (:obj:`Node`, optional): Pointer to the next node
+            of a singly linked list. Defaults to None.
+
+    Atributes:
+        data (int): value of a linked list node.
+        next_node (:obj:`Node`, optional): Pointer to the next node
+            of a singly linked list. Defaults to None.
     """
 
     def __init__(self, data, next_node=None):
@@ -16,7 +22,12 @@ class Node:
 
     @property
     def data(self):
-        """int: data of a linked list node"""
+        """int: data of a linked list node
+
+        Note:
+            Setter raises a TypeError if datatype other than
+                `int` is assigned to `data`.
+        """
 
         return self.__data
 
@@ -29,7 +40,13 @@ class Node:
 
     @property
     def next_node(self):
-        """Node: Pointer to the Next node of a linked list"""
+        """(:obj:`Node`, optional): Pointer to the next node
+            of a singly linked list, or None.
+
+        Note:
+            Setter raises a TypeError if datatype other than
+                `Node` or `None` is assigned to `next_node`.
+        """
 
         return self.__next_node
 
@@ -42,13 +59,17 @@ class Node:
 
 
 class SinglyLinkedList:
-    """Defines a Singly linked list"""
+    """Defines a Singly linked list."""
 
     def __init__(self):
         self.__head = None
 
     def sorted_insert(self, value):
-        """Insert a new Node into linked list in descending order"""
+        """Insert a new Node into linked list in ascending order.
+
+        Args:
+            value (int): Value of new node.
+        """
 
         new_node = Node(value)
 

@@ -1,0 +1,34 @@
+The ``3-say_my_name`` module
+===========================
+
+Testing ``say_my_name``
+---------------------
+    >>> say_my_name = __import__("3-say_my_name").say_my_name
+
+Passing cases
+-------------
+    >>> say_my_name("James", "Bond")
+    My name is James Bond
+
+    >>> say_my_name("Lebron") #doctest: +REPORT_NDIFF, +ELLIPSIS
+    My name is Lebron...
+
+    >>> say_my_name("", "Bam") #doctest: +REPORT_NDIFF, +ELLIPSIS
+    My name is ...Bam
+
+Failing cases
+-------------
+    >>> say_my_name(3)
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name([])
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name(False, True)
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string

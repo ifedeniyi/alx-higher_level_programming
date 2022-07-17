@@ -13,6 +13,9 @@ Passing Cases
     >>> add_integer(-66)
     32
 
+    >>> add_integer(0)
+    98
+
     >>> add_integer(2.5)
     100
 
@@ -32,7 +35,7 @@ Failing Cases
 	...
     TypeError: a must be an integer
 
-    >>> add_integer('w', "7")
+    >>> add_integer(None, None)
     Traceback (most recent call last):
 	...
     TypeError: a must be an integer

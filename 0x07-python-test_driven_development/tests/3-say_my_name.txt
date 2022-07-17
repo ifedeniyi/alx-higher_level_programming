@@ -16,6 +16,12 @@ Passing cases
     >>> say_my_name("", "Bam") #doctest: +REPORT_NDIFF, +ELLIPSIS
     My name is ...Bam
 
+    >>> say_my_name("", "") #doctest: +REPORT_NDIFF, +ELLIPSIS
+    My name is ...
+
+    >>> say_my_name(" ", " .") #doctest: +REPORT_NDIFF, +ELLIPSIS
+    My name is ... .
+
 Failing cases
 -------------
     >>> say_my_name(3)
@@ -32,3 +38,8 @@ Failing cases
     Traceback (most recent call last):
     ...
     TypeError: first_name must be a string
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+    ...
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'

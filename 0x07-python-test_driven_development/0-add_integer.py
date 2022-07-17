@@ -12,10 +12,14 @@ def add_integer(a, b=98):
     Returns:
         (int) Result of adding `a` and `b`.
     """
+
     allowed_types = [int, float]
 
-    if type(a) not in allowed_types or type(b) not in allowed_types:
-        raise TypeError("a must be an integer or b must be an integer")
+    if type(a) not in allowed_types:
+        raise TypeError("a must be an integer")
+
+    if type(b) not in allowed_types:
+        raise TypeError("b must be an integer")
 
     return int(a) + int(b)
 

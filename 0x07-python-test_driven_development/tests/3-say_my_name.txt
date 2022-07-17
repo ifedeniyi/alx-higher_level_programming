@@ -19,12 +19,23 @@ Passing cases
     >>> say_my_name("", "") #doctest: +REPORT_NDIFF, +ELLIPSIS
     My name is ...
 
+    >>> say_my_name("	") #doctest: +REPORT_NDIFF, +ELLIPSIS
+    My name is ...
+
     >>> say_my_name(" ", " .") #doctest: +REPORT_NDIFF, +ELLIPSIS
     My name is ... .
+
+    >>> say_my_name("2", "?")
+    My name is 2 ?
 
 Failing cases
 -------------
     >>> say_my_name(3)
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name(4.3)
     Traceback (most recent call last):
     ...
     TypeError: first_name must be a string

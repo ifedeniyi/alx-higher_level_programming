@@ -23,8 +23,8 @@ def matrix_divided(matrix, div):
     """
 
     row_len = 0
+    new_arr = []
     type_err = "matrix must be a matrix (list of lists) of integers/floats"
-    size_err = "Each row of the matrix must have the same size"
 
     if type(matrix) is not list:
         raise TypeError(type_err)
@@ -39,12 +39,13 @@ def matrix_divided(matrix, div):
         if type(i) is not list:
             raise TypeError(type_err)
         if len(i) != row_len:
-            raise TypeError(size_err)
+            raise TypeError("Each row of the matrix must have the same size")
+
+        new_arr.append([])
 
         for j in i:
             if type(j) not in [int, float]:
                 raise TypeError(type_err)
+            new_arr[-1].append(round(j / div, 2))
 
-    return list(
-        map(lambda x: list(map(lambda y: round(y / div, 2), x)), matrix)
-    )
+    return new_arr

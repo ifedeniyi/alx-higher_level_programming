@@ -20,22 +20,32 @@ Passing Cases
 
 Failing Cases
 -------------
-    >>> matrix_divided(2, 2) #doctest: +ELLIPSIS
+    >>> matrix_divided(2, 2)
     Traceback (most recent call last):
     ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_divided([["2", 7], [9, 4]], 2) #doctest: +ELLIPSIS
+    >>> matrix_divided([["2", 7], [9, 4]], 2)
     Traceback (most recent call last):
     ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_divided([[3, 2, 7], [9, 4]], 2) #doctest: +ELLIPSIS
+    >>> matrix_divided([[3, 2, 7], [9, 4]], 2)
     Traceback (most recent call last):
     ...
     TypeError: Each row of the matrix must have the same size
 
-    >>> matrix_divided([[3, 2], [9, 4]], 0) #doctest: +ELLIPSIS
+    >>> matrix_divided([[3, 2], [9, 4]], 0)
     Traceback (most recent call last):
     ...
     ZeroDivisionError: division by zero
+
+    >>> matrix_divided([[3, 2], [9, 4]])
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+    >>> matrix_divided()
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'

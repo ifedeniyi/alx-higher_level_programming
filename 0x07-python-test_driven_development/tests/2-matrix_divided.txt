@@ -2,7 +2,6 @@ The ``2-matrix_divided`` module
 ===============================
 
 Testing ``matrix_divided``
-------------------------
     >>> matrix_divided = __import__("2-matrix_divided").matrix_divided
 
 Passing Cases
@@ -21,22 +20,22 @@ Passing Cases
 
 Failing Cases
 -------------
-    >>> matrix_divided(2, 2)
+    >>> matrix_divided(2, 2) #doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_divided([["2", 7], [9, 4]], 2)
+    >>> matrix_divided([["2", 7], [9, 4]], 2) #doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-    >>> matrix_divided([[3, 2, 7], [9, 4]], 2)
+    >>> matrix_divided([[3, 2, 7], [9, 4]], 2) #doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
     TypeError: Each row of the matrix must have the same size
 
-    >>> matrix_divided([[3, 2], [9, 4]], 0)
+    >>> matrix_divided([[3, 2], [9, 4]], 0) #doctest: +ELLIPSIS
     Traceback (most recent call last):
     ...
     ZeroDivisionError: division by zero

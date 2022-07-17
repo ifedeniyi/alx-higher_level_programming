@@ -30,6 +30,16 @@ Failing Cases
     ...
     TypeError: matrix must be a matrix (list of lists) of integers/floats
 
+    >>> matrix_divided([True, [9, 4]], 2)
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+    >>> matrix_divided([(45, 90), [9, 4]], 2)
+    Traceback (most recent call last):
+    ...
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
+
     >>> matrix_divided([[3, 2, 7], [9, 4]], 2)
     Traceback (most recent call last):
     ...

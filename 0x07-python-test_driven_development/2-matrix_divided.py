@@ -12,14 +12,14 @@ Example:
 
 
 def matrix_divided(matrix, div):
-    """Divides all elements of a matrix `matrix` by int `div`.
+    """Divides all elements of `matrix` by `div`.
 
     Args:
-        matrix (:obj:`list` of :obj:`list`): Matrix to transform.
+        matrix (:obj:`int` of :obj:`list` of :obj:`list`): Matrix to transform.
         div (int): Int to divide `matrix` elements by.
 
     Returns:
-        (:obj:`list` of :obj:`list`): Transformed matrix.
+        (:obj:`float` of :obj:`list` of :obj:`list`): Transformed matrix.
     """
 
     row_len = 0
@@ -34,10 +34,11 @@ def matrix_divided(matrix, div):
         raise ZeroDivisionError("division by zero")
 
     for i in matrix:
-        row_len = row_len if row_len != 0 else len(i)
-
         if type(i) is not list:
             raise TypeError(type_err)
+        else:
+            row_len = row_len if row_len != 0 else len(i)
+
         if len(i) != row_len:
             raise TypeError("Each row of the matrix must have the same size")
 

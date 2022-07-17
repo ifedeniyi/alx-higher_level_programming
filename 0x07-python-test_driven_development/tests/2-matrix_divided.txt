@@ -1,0 +1,11 @@
+The ``2-matrix_divided`` module
+===============================
+
+Testing ``matrix_divided``
+------------------------
+    >>> matrix_divided = __import__("2-matrix_divided").matrix_divided
+
+Passing Cases
+-------------
+    >>> matrix_divided([[2, 4], [8, 10]], 2)
+    [[1, 2], [4, 5]]

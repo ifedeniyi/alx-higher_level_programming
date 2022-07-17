@@ -3,8 +3,6 @@ The ``0-add_integer`` module
 
 Testing ``add_integer``
 -------------------
-    >>> import sys
-    >>> sys.path.insert(1, '../')
     >>> add_integer = __import__("0-add_integer").add_integer
 
 Passing Cases
@@ -12,23 +10,14 @@ Passing Cases
     >>> add_integer(6, 10)
     16
 
-    >>> add_integer(6)
-    104
-
     >>> add_integer(-66)
     32
-
-    >>> add_integer(0)
-    98
 
     >>> add_integer(2.5)
     100
 
     >>> add_integer(-20.8)
     78
-
-    >>> add_integer(-0)
-    98
 
 Failing Cases
 -------------
@@ -42,35 +31,10 @@ Failing Cases
 	...
     TypeError: b must be an integer
 
-    >>> add_integer(2+6J)
-    Traceback (most recent call last):
-	...
-    TypeError: a must be an integer
-
     >>> add_integer()
     Traceback (most recent call last):
     ...
     TypeError: add_integer() missing 1 required positional argument: 'a'
-
-    >>> add_integer("0")
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
-
-    >>> add_integer(None)
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
-
-    >>> add_integer(int)
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
-
-    >>> add_integer({1: 2})
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
 
     >>> add_integer([2])
     Traceback (most recent call last):

@@ -3,6 +3,8 @@ The ``0-add_integer`` module
 
 Testing ``add_integer``
 -------------------
+    >>> import sys
+    >>> sys.path.insert(1, '../')
     >>> add_integer = __import__("0-add_integer").add_integer
 
 Passing Cases

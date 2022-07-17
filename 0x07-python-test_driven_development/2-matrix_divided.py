@@ -2,6 +2,12 @@
 """This is the `2-matrix_divided` module.
 
 The `2-matrix_divided` module supplies one function, `matrix_divided()`
+
+Example:
+    >>> matrix_divided = __import__("2-matrix_divided").matrix_divided
+    >>> new_matrix = matrix_divided([[2, 4], [6, 8]], 2)
+    >>> print(new_matrix)
+    [[1, 2], [3, 4]]
 """
 
 

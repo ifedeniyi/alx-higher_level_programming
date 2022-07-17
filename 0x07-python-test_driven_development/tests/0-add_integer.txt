@@ -1,42 +1,61 @@
-The ``0-add_integer`` module
-==============================
+A test to for adding two inteter
 
-Testing ``add_integer``
--------------------
-    >>> add_integer = __import__("0-add_integer").add_integer
+Import Python module + collections
+>>> import sys
+>>> sys.path.insert(1, '../')
+>>> lib = __import__("0-add_integer")
+>>> add_integer = lib.add_integer
 
-Passing Cases
------------
-    >>> add_integer(6, 10)
-    16
+# Normal addition test
+>>> add_integer(0)
+98
+>>> add_integer(-1)
+97
+>>> add_integer(10.5)
+108
 
-    >>> add_integer(-66)
-    32
+# Type Errors
+>>> add_integer(10+5j)
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+>>> add_integer([])
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+>>> add_integer({})
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
+>>> add_integer(set())
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
 
-    >>> add_integer(2.5)
-    100
+>>> add_integer("")
+Traceback (most recent call last):
+...
+TypeError: a must be an integer
 
-    >>> add_integer(-20.8)
-    78
+# Two input addition type errors
+>>> add_integer(10, 10+5j)
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+>>> add_integer(10, [])
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+>>> add_integer(10, {})
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
+>>> add_integer(10, set())
+Traceback (most recent call last):
+...
+TypeError: b must be an integer
 
-Failing Cases
--------------
-    >>> add_integer('w', 7)
-    Traceback (most recent call last):
-	...
-    TypeError: a must be an integer
-
-    >>> add_integer(6, True)
-    Traceback (most recent call last):
-	...
-    TypeError: b must be an integer
-
-    >>> add_integer()
-    Traceback (most recent call last):
-    ...
-    TypeError: add_integer() missing 1 required positional argument: 'a'
-
-    >>> add_integer([2])
-    Traceback (most recent call last):
-    ...
-    TypeError: a must be an integer
+>>> add_integer(10, "")
+Traceback (most recent call last):
+...
+TypeError: b must be an integer

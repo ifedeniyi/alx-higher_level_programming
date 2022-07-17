@@ -30,12 +30,17 @@ Passing cases
 
 Failing cases
 -------------
-    >>> say_my_name(3)
+    >>> say_my_name(3, 2)
     Traceback (most recent call last):
     ...
     TypeError: first_name must be a string
 
     >>> say_my_name(4.3)
+    Traceback (most recent call last):
+    ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name(None)
     Traceback (most recent call last):
     ...
     TypeError: first_name must be a string

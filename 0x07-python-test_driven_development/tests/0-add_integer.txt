@@ -19,9 +19,20 @@ Passing Cases
     >>> add_integer(-20.8)
     78
 
+    >>> add_integer(0.8, 2.2)
+    2
+
+    >>> add_integer(-8, -4)
+    -12
+
 Failing Cases
 -------------
     >>> add_integer('w', 7)
+    Traceback (most recent call last):
+	...
+    TypeError: a must be an integer
+
+    >>> add_integer('w', "7")
     Traceback (most recent call last):
 	...
     TypeError: a must be an integer

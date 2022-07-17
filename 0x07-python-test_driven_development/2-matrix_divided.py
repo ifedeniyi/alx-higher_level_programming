@@ -48,8 +48,3 @@ def matrix_divided(matrix, div):
     return list(
         map(lambda x: list(map(lambda y: round(y / div, 2), x)), matrix)
     )
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testfile("tests/2-matrix_divided.txt")

@@ -23,6 +23,17 @@ Passing cases
     <BLANKLINE>
     Captain
 
+    >>> text_indentation(".    : ?")
+    .
+    <BLANKLINE>
+    :
+    <BLANKLINE>
+    ?
+    <BLANKLINE>
+
+    >>> text_indentation("Freaky")
+    Freaky
+
     >>> text_indentation(" ")
     <BLANKLINE>
 

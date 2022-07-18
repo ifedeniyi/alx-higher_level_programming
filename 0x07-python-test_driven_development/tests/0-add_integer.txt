@@ -19,6 +19,12 @@ Passing Cases
     >>> add_integer(0)
     98
 
+    >>> add_integer(0, 0)
+    0
+
+    >>> add_integer(0, -5)
+    -5
+
     >>> add_integer(-8)
     90
 

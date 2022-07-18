@@ -18,6 +18,12 @@ Passing cases
     >>> print_square(1)
     #
 
+    >>> my_var = 3
+    >>> print_square(my_var)
+    ###
+    ###
+    ###
+
 
 Failing cases
 -------------
@@ -30,3 +36,13 @@ Failing cases
     Traceback (most recent call last):
     ...
     ValueError: size must be >= 0
+
+    >>> print_square("56")
+    Traceback (most recent call last):
+    ...
+    TypeError: size must be an integer
+
+    >>> print_square(True)
+    Traceback (most recent call last):
+    ...
+    TypeError: size must be an integer

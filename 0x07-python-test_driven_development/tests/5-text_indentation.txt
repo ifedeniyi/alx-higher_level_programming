@@ -31,6 +31,12 @@ Passing cases
     ?
     <BLANKLINE>
 
+    >>> text_indentation("Hello\n\nThere.")
+    Hello
+    <BLANKLINE>
+    There.
+    <BLANKLINE>
+
     >>> text_indentation("Freaky")
     Freaky
 

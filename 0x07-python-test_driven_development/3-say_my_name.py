@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """This is the `3-say_my_name` module.
 
-The `say_my_name` module supplies one function, `say_my_name()`.
+The `3-say_my_name` module supplies one function, `say_my_name()`.
 
 Example:
     >>> say_my_name = __import__("3-say_my_name").say_my_name

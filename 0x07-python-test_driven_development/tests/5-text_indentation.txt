@@ -23,9 +23,24 @@ Passing cases
     <BLANKLINE>
     Captain
 
+    >>> text_indentation(" ")
+    <BLANKLINE>
+
+    >>> text_indentation("")
+
 Failing cases
 ------------
     >>> text_indentation(23)
     Traceback (most recent call last):
       ...
     TypeError: text must be a string
+
+    >>> text_indentation(True)
+    Traceback (most recent call last):
+      ...
+    TypeError: text must be a string
+
+    >>> text_indentation()
+    Traceback (most recent call last):
+      ...
+    TypeError: text_indentation() missing 1 required positional argument: 'text'

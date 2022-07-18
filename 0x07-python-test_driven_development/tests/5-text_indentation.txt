@@ -1,0 +1,31 @@
+The ``5-text_indentation`` module
+=================================
+
+Testing ``text_indentation``
+    >>> text_indentation = __import__("5-text_indentation").text_indentation
+
+Passing cases
+-------------
+    >>> text_indentation("Zangetsu: What's the difference between a king and his horse? Ichigo: Huh?")
+    Zangetsu:
+    <BLANKLINE>
+    What's the difference between a king and his horse?
+    <BLANKLINE>
+    Ichigo:
+    <BLANKLINE>
+    Huh?
+    <BLANKLINE>
+
+    >>> text_indentation("name: Kyoraku, rank: Captain")
+    name:
+    <BLANKLINE>
+    Kyoraku, rank:
+    <BLANKLINE>
+    Captain
+
+Failing cases
+------------
+    >>> text_indentation(23)
+    Traceback (most recent call last):
+      ...
+    TypeError: text must be a string

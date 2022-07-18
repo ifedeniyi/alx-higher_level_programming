@@ -3,7 +3,7 @@
 
 The `4-print_square` module supplies one function, `print_square()`.
 
-Example;
+Example:
     >>> print_square = __import__("4-print_square").print_square
     >>> print_square(2)
     ##

@@ -33,7 +33,11 @@ def text_indentation(text: str):
 
         if text[i] in ['.', '?', ':']:
             print('\n\n', end='')
-            i += 2
-            continue
+            try:
+                if text[i+1] == ' ':
+                    i += 2
+                    continue
+            except IndexError:
+                break
 
         i += 1

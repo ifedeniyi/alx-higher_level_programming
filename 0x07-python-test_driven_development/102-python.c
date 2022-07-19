@@ -17,7 +17,7 @@ void print_python_string(PyObject *p)
 
 	if (!PyUnicode_Check(p))
 	{
-		printf("  [ERROR] Invalid String Object");
+		printf("  [ERROR] Invalid String Object\n");
 		return;
 	}
 

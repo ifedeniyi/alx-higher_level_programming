@@ -6,5 +6,4 @@ The `0-rectangle` module defines a `Rectangle` class.
 
 
 class Rectangle:
-    """A Rectangle class."""
     pass

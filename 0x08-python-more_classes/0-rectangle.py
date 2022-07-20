@@ -1,9 +1,7 @@
-#!/usr/bin/python
-"""The `0-rectangle` module.
-
-The `0-rectangle` module defines a `Rectangle` class.
-"""
+#!/usr/bin/python3
+""" Create a rectangle class """
 
 
 class Rectangle:
+    """Definition of class rectangle"""
     pass

@@ -2,6 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/**
+ * hash_table_create - Create a hash table of size @size
+ *
+ * @size: size of hash table array
+ * Return: (hash_table_t*) created hash table
+ */
 hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_node_t **node_arr;
@@ -23,5 +29,5 @@ hash_table_t *hash_table_create(unsigned long int size)
 	new_hash_table->size = size;
 	new_hash_table->array = node_arr;
 
-	return new_hash_table;
+	return (new_hash_table);
 }

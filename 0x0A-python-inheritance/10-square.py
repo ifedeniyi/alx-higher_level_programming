@@ -19,4 +19,7 @@ class Square(Rect):
     def area(self):
         """Compute area of square object"""
 
-        return self.size ** 2
+        return self.__size ** 2
+
+    def __str__(self):
+        return "[Square] {}/{}".format(self.__size, self.__size)

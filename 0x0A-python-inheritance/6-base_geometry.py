@@ -5,7 +5,7 @@
 class BaseGeometry:
     """Empty class"""
 
-    def area():
+    def area(self):
         """empty function
 
         Raises:

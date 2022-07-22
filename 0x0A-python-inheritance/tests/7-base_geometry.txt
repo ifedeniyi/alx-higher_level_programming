@@ -1,0 +1,22 @@
+The module ``7-base_geometry``
+===========================
+
+Testing ``integer_validator``
+-----------------------
+    >>> Bg = __import__("7-base_geometry").BaseGeometry
+
+All cases
+------------
+    >>> bg = Bg()
+
+    >>> bg.integer_validator('Maple Jordan', 5)
+
+    >>> bg.integer_validator('Maple Jordan', 'Ant man')
+    Traceback (most recent call last):
+    ...
+    TypeError: <name> must be an integer
+
+    >>> bg.integer_validator('Maple Jordan', -3)
+    Traceback (most recent call last):
+    ...
+    ValueError: <name> must be greater than 0

@@ -16,4 +16,6 @@ def inherits_from(obj, a_class):
         bool: True if `obj` is exact instance of `a_class`, False otherwise
     """
 
+    if type(obj) == a_class:
+        return
     return isinstance(obj, a_class)

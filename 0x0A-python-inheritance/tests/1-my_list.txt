@@ -28,16 +28,31 @@ Passing cases
     >>> my_list
     [1, 4, 2, 3, '3']
 
+    >>> my_list = MyList("happy")
+
+    >>> my_list
+    ['h', 'a', 'p', 'p', 'y']
+
+    >>> my_list.print_sorted()
+    ['a', 'h', 'p', 'p', 'y']
+
+    >>> new_l = MyList()
+
+    >>> new_l.print_sorted()
+    []
+
 
 Failing cases
 ------------
+    >>> my_list = MyList([4, 5, 1, 'e'])
+
     >>> my_list.print_sorted()
     Traceback (most recent call last):
     ...
     TypeError: '<' not supported between instances of 'str' and 'int'
 
     >>> my_list.pop()
-    '3'
+    'e'
 
     >>> my_list.append(None)
 

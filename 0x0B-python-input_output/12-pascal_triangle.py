@@ -19,6 +19,7 @@ def pascal_triangle(n):
 
         if i == 0:
             col.append([1])
+            continue
 
         prev = col[-1]
 

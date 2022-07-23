@@ -40,3 +40,9 @@ class Student:
                 lambda el: el[0] in attrs, self.__dict__.items()))
 
         return self.__dict__
+
+    def reload_from_json(self, json):
+        """"""
+
+        self.__dict__.clear()
+        self.__dict__.update(json)

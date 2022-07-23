@@ -12,7 +12,7 @@ def pascal_triangle(n):
     col = []
 
     if n <= 0:
-        return result
+        return []
 
     for i in range(n):
         row = []
@@ -22,7 +22,6 @@ def pascal_triangle(n):
             continue
 
         prev = col[-1]
-
         # prev -> [1, 2, 1] -> len = 3
         for j in range(len(prev) + 1):
             if j == 0:

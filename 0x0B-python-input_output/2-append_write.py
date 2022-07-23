@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""The `2-append_file` module.
+"""The `2-append_write` module.
 
-It defines one function, `append_file()`.
+It defines one function, `append_write()`.
 """
 
 
-def append_file(filename="", text=""):
+def append_write(filename="", text=""):
     """appends to a text file (UTF8) and returns the
         number of characters written.
 

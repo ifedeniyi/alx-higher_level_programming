@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Unittest for `base` module functionality
+"""Unit tests for the `base` module.
 """
 import unittest
 from models.base import Base

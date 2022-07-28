@@ -12,11 +12,14 @@ class TestRectangle(unittest.TestCase):
         """Test with complete args"""
 
         r1 = Rectangle(10, 5, 16, 4, "A")
+        r2 = Rectangle(10, 5, 0, 0)
         self.assertEqual(r1.width, 10)
         self.assertEqual(r1.height, 5)
         self.assertEqual(r1.x, 16)
         self.assertEqual(r1.y, 4)
         self.assertEqual(r1.id, "A")
+        self.assertEqual(r2.x, 0)
+        self.assertEqual(r2.y, 0)
 
     def test_access_private_attrs(self):
         """Test failure to access private attributes"""
@@ -35,10 +38,25 @@ class TestRectangle(unittest.TestCase):
             r1.__nb_objects
 
     def test_invalid_args(self):
-        """Test incimplete positional arguments"""
+        """Test incomplete positional arguments"""
 
         with self.assertRaises(TypeError):
             Rectangle()
-
         with self.assertRaises(TypeError):
             Rectangle(20)
+        with self.assertRaises(TypeError):
+            Rectangle("Derozen", 23)
+        with self.assertRaises(TypeError):
+            Rectangle(20, "Bron")
+        with self.assertRaises(TypeError):
+            Rectangle(20, 10, "Kawhi")
+        with self.assertRaises(TypeError):
+            Rectangle(20, 10, 5, "Giannis")
+        with self.assertRaises(ValueError):
+            Rectangle(0, 10)
+        with self.assertRaises(ValueError):
+            Rectangle(20, -4)
+        with self.assertRaises(ValueError):
+            Rectangle(20, 10, -10)
+        with self.assertRaises(ValueError):
+            Rectangle(20, 10, 10, -20)

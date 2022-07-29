@@ -3,9 +3,6 @@
 
 It defines one class, `Base`.
 """
-
-
-from ast import Dict
 import json
 
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 """The `square` module
 
 It defines one class, `Square(),

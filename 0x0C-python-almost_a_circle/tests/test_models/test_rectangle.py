@@ -78,16 +78,29 @@ class TestRectangle(unittest.TestCase):
         """Tests printing to stdout the `Rectangle` instance
         with the character `#`."""
 
-        rect1 = Rectangle(2, 4, 60, 90, 5)
+        rect = Rectangle(2, 4, 60, 90, 5)
+        rect1 = Rectangle(5, 2, 6, 9)
         f = io.StringIO()
         f1 = io.StringIO()
         with contextlib.redirect_stdout(f):
-            rect1.display()
+            rect.display()
         self.assertEqual(f.getvalue(), "##\n##\n##\n##\n")
+        with contextlib.redirect_stdout(f1):
+            rect1.display()
+        self.assertEqual(f1.getvalue(), "#####\n#####\n")
+        f.close()
+        f1.close()
 
-        with contextlib.redirect_stdout(f1):
-            print(rect1)
-        self.assertEqual(f1.getvalue(), "[Rectangle] (5) 60/90 - 2/4\n")
-        with contextlib.redirect_stdout(f1):
-            str(rect1)
-        self.assertEqual(f1.getvalue(), "[Rectangle] (5) 60/90 - 2/4\n")
+    def test_rectangle_str(self):
+        """Tests printing to stdout the `Rectangle` instance
+        with `print()` and `str()`."""
+
+        rect = Rectangle(2, 4, 60, 90, 5)
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            print(rect)
+        self.assertEqual(f.getvalue(), "[Rectangle] (5) 60/90 - 2/4\n")
+        with contextlib.redirect_stdout(f):
+            str(rect)
+        self.assertEqual(f.getvalue(), "[Rectangle] (5) 60/90 - 2/4\n")
+        f.close()

@@ -57,3 +57,59 @@ class TestSquare(unittest.TestCase):
             Square(20, -4)
         with self.assertRaises(ValueError):
             Square(20, 10, -10)
+
+    def test_update_square(self):
+        """Tests updating a `Square` instance dynamically."""
+
+        sqr = Square(20)
+        sqr.update(15, 10, 3, 2)
+        self.assertEqual(sqr.id, 15)
+        self.assertEqual(sqr.width, 10)
+        self.assertEqual(sqr.height, 10)
+        self.assertEqual(sqr.x, 3)
+        self.assertEqual(sqr.y, 2)
+
+        sqr.update(2, 10, 4, 1)
+        self.assertEqual(sqr.id, 2)
+        self.assertEqual(sqr.width, 10)
+        self.assertEqual(sqr.height, 10)
+        self.assertEqual(sqr.x, 4)
+        self.assertEqual(sqr.y, 1)
+
+        sqr.update(size=30)
+        self.assertEqual(sqr.width, 30)
+        self.assertEqual(sqr.height, 30)
+
+        sqr.update(x=3, y=1)
+        self.assertEqual(sqr.x, 3)
+        self.assertEqual(sqr.y, 1)
+
+        sqr.update(5, 15, x=4, y=2)
+        self.assertEqual(sqr.id, 5)
+        self.assertEqual(sqr.width, 15)
+        self.assertEqual(sqr.height, 15)
+        self.assertEqual(sqr.x, 3)
+        self.assertEqual(sqr.y, 1)
+
+    def test_failing_update_square(self):
+        """Tests failing cases for updating a `Square`
+        instance dynamically."""
+
+        sqr = Square(1, 4)
+
+        with self.assertRaises(ValueError):
+            sqr.update(2, 0)
+        with self.assertRaises(ValueError):
+            sqr.update(2, 20, -5)
+        with self.assertRaises(ValueError):
+            sqr.update(2, 20, 10, -2)
+        with self.assertRaises(TypeError):
+            sqr.update(2, "wardell")
+        with self.assertRaises(TypeError):
+            sqr.update(2, 25, "wardell")
+        with self.assertRaises(TypeError):
+            sqr.update(2, 25, 10, "wardell")
+        sqr.update(25, 15, x=4, y=2)
+        with self.assertRaises(AssertionError):
+            self.assertEqual(sqr.x, 4)
+            self.assertEqual(sqr.y, 2)

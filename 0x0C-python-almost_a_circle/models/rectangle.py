@@ -98,10 +98,11 @@ class Rectangle(Base):
                 print("#", end='')
             print('')
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """Updates a `Rectangle` instance dynamically."""
 
         argc = len(args)
+        kwargc = len(kwargs)
 
         if argc > 0:
             self.id = args[0]
@@ -113,6 +114,10 @@ class Rectangle(Base):
                         self.x = args[3]
                         if argc > 4:
                             self.y = args[4]
+        elif kwargc > 0:
+            for k, v in kwargs.items():
+                if k in self.__dict__:
+                    self.__setattr__(k, v)
 
     def __str__(self):
         return "[Rectangle] ({}) {}/{} - {}/{}".format(

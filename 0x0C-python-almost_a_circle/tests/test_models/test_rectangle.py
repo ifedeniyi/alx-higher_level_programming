@@ -10,6 +10,9 @@ from models.rectangle import Rectangle
 class TestRectangle(unittest.TestCase):
     """Test cases for the `Rectangle` class."""
 
+    def tearDown(self):
+        Rectangle.__nb_objects = 0
+
     def test_complete_args(self):
         """Tests with complete args"""
 
@@ -121,3 +124,44 @@ class TestRectangle(unittest.TestCase):
             str(rect)
         self.assertEqual(f.getvalue(), "[Rectangle] (5) 0/0 - 2/4\n")
         f.close()
+
+    def test_update_rectangle(self):
+        """Tests updating a `Rectangle` instance dynamically."""
+
+        rect = Rectangle(20, 4)
+        rect.update(15, 10, 15, 8, 9)
+        self.assertEqual(rect.id, 15)
+        self.assertEqual(rect.width, 10)
+        self.assertEqual(rect.height, 15)
+        self.assertEqual(rect.x, 8)
+        self.assertEqual(rect.y, 9)
+
+        rect.update(2, 20, 10, 2, 2)
+        self.assertEqual(rect.id, 2)
+        self.assertEqual(rect.width, 20)
+        self.assertEqual(rect.height, 10)
+        self.assertEqual(rect.x, 2)
+        self.assertEqual(rect.y, 2)
+
+    def test_failing_update_rectangle(self):
+        """Tests failing cases for updating a `Rectangle`
+        instance dynamically."""
+
+        rect = Rectangle(1, 4)
+
+        with self.assertRaises(ValueError):
+            rect.update(2, 0)
+        with self.assertRaises(ValueError):
+            rect.update(2, 20, -5)
+        with self.assertRaises(ValueError):
+            rect.update(2, 20, 10, -2)
+        with self.assertRaises(ValueError):
+            rect.update(2, 20, 10, 2, -1)
+        with self.assertRaises(TypeError):
+            rect.update(2, "wardell")
+        with self.assertRaises(TypeError):
+            rect.update(2, 25, "wardell")
+        with self.assertRaises(TypeError):
+            rect.update(2, 25, 10, "wardell")
+        with self.assertRaises(TypeError):
+            rect.update(2, 25, 10, 2, "wardell")

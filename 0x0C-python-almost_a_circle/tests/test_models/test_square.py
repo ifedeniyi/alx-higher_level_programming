@@ -113,3 +113,13 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(AssertionError):
             self.assertEqual(sqr.x, 4)
             self.assertEqual(sqr.y, 2)
+
+    def test_rect_to_dict(self):
+        """Test building the dictionary representation of a `Square.`"""
+
+        s1 = Square(10, 2, 1, 9)
+        s2 = Square(10)
+        self.assertDictEqual(
+            s1.to_dictionary(), {'id': 9, 'x': 2, 'size': 10, 'y': 1})
+        self.assertDictEqual(
+            s2.to_dictionary(), {'id': 30, 'x': 0, 'size': 10, 'y': 0})

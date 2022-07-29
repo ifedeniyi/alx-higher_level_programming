@@ -76,3 +76,9 @@ class Square(Rectangle):
                         self.__setattr__(k, v)
                 except Exception:
                     pass
+
+    def to_dictionary(self):
+        """Returns the dictionary representation of a `Square`."""
+
+        attrs = ["id", "x", "size", "y"]
+        return {x: self.__getattribute__(x) for x in attrs}

@@ -184,7 +184,7 @@ class TestRectangle(unittest.TestCase):
             self.assertEqual(rect.y, 2)
 
     def test_rect_to_dict(self):
-        """"""
+        """Test building the dictionary representation of a `Rectangle."""
 
         r1 = Rectangle(10, 2, 1, 9)
         r2 = Rectangle(10, 20)

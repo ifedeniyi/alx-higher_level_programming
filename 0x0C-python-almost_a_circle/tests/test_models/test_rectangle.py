@@ -60,3 +60,10 @@ class TestRectangle(unittest.TestCase):
             Rectangle(20, 10, -10)
         with self.assertRaises(ValueError):
             Rectangle(20, 10, 10, -20)
+
+    def test_rectangle_area(self):
+        """Test computing the area of a `Rectangle` instance,
+        using the `area()` public method."""
+
+        rect1 = Rectangle(20, 10)
+        self.assertEqual(rect1.area(), 200)

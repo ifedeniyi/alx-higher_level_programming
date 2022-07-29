@@ -116,8 +116,11 @@ class Rectangle(Base):
                             self.y = args[4]
         elif kwargc > 0:
             for k, v in kwargs.items():
-                if k in self.__dict__:
-                    self.__setattr__(k, v)
+                try:
+                    if self.__getattribute__(k) is not None:
+                        self.__setattr__(k, v)
+                except Exception:
+                    pass
 
     def __str__(self):
         return "[Rectangle] ({}) {}/{} - {}/{}".format(

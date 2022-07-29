@@ -34,7 +34,12 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """The width property of the `Rectangle` instance."""
+        """The width property of the `Rectangle` instance.
+
+        Raises:
+            TypeError: if `width` is not an int
+            ValueError: if `width` <= 0
+        """
 
         return self.__width
 
@@ -48,7 +53,12 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """The height property of the `Rectangle` instance."""
+        """The height property of the `Rectangle` instance.
+
+        Raises:
+            TypeError: if `height` is not an int
+            ValueError: if `height` <= 0
+        """
 
         return self.__height
 
@@ -62,7 +72,12 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """The x-coordinate of the `Rectangle` instance."""
+        """The x-coordinate of the `Rectangle` instance.
+
+        Raises:
+            TypeError: if `x` is not an int
+            ValueError: if `x` < 0
+        """
 
         return self.__x
 
@@ -76,7 +91,12 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """The y-coordinate of the `Rectangle` instance."""
+        """The y-coordinate of the `Rectangle` instance.
+
+        Raises:
+            TypeError: if `y` is not an int
+            ValueError: if `y` < 0
+        """
 
         return self.__y
 

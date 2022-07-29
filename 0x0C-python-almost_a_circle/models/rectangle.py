@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """The `rectangle` module
 
 It defines one class, `Rectangle()`,

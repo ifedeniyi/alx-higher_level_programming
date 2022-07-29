@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """The `rectangle` module
 
-It defines one class, `Rectangle(Base).`
+It defines one class, `Rectangle()`,
+which sub-classes the `Base()` class.`
 """
-from typing import Dict
 from models.base import Base
 
 
@@ -16,6 +16,13 @@ class Rectangle(Base):
         x (int, optional): x-coordinate
         y (int, optional): y-coordinate
         id (int, optional): the id for an instance of the `Rectangle` instance
+
+    Attributes:
+        width (int): the width of the `Rectangle` instance
+        height (int): the height of the `Rectangle` instance
+        x (int): x-coordinate
+        y (int): y-coordinate
+        id (int): the id for an instance of the `Rectangle` instance
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):

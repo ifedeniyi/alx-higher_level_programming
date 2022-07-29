@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """Unit tests for the `rectangle` module.
 """
+import io
 import unittest
+import contextlib
 from models.rectangle import Rectangle
 
 
@@ -9,7 +11,7 @@ class TestRectangle(unittest.TestCase):
     """Test cases for the `Rectangle` class."""
 
     def test_complete_args(self):
-        """Test with complete args"""
+        """Tests with complete args"""
 
         r1 = Rectangle(10, 5, 16, 4, "A")
         r2 = Rectangle(10, 5, 0, 0)
@@ -22,7 +24,7 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r2.y, 0)
 
     def test_access_private_attrs(self):
-        """Test failure to access private attributes"""
+        """Tests failure to access private attributes"""
 
         r1 = Rectangle(10, 5, 16, 4, 1)
 
@@ -38,7 +40,7 @@ class TestRectangle(unittest.TestCase):
             r1.__nb_objects
 
     def test_invalid_args(self):
-        """Test incomplete positional arguments"""
+        """Tests incomplete positional arguments"""
 
         with self.assertRaises(TypeError):
             Rectangle()
@@ -62,8 +64,23 @@ class TestRectangle(unittest.TestCase):
             Rectangle(20, 10, 10, -20)
 
     def test_rectangle_area(self):
-        """Test computing the area of a `Rectangle` instance,
+        """Tests computing the area of a `Rectangle` instance,
         using the `area()` public method."""
 
         rect1 = Rectangle(20, 10)
+        rect2 = Rectangle(20, 1)
+        rect3 = Rectangle(ord('a'), ord('b'))
         self.assertEqual(rect1.area(), 200)
+        self.assertEqual(rect2.area(), 20)
+        self.assertEqual(rect3.area(), (ord('a') * ord('b')))
+
+    def test_rectangle_display(self):
+        """Tests printing to stdout the `Rectangle` instance
+        with the character `#`."""
+
+        rect1 = Rectangle(2, 4)
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            rect1.display()
+
+        self.assertEqual(f.getvalue(), "##\n##\n##\n##\n")

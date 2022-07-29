@@ -52,3 +52,25 @@ class Square(Rectangle):
 
         self.__width = size
         self.__height = size
+
+    def update(self, *args, **kwargs):
+        """Updates a `Square` instance dynamically."""
+
+        argc = len(args)
+        kwargc = len(kwargs)
+
+        if argc > 0:
+            self.id = args[0]
+            if argc > 1:
+                self.width = args[1]
+                if argc > 2:
+                    self.height = args[2]
+                    if argc > 3:
+                        self.x = args[3]
+        elif kwargc > 0:
+            for k, v in kwargs.items():
+                try:
+                    if self.__getattribute__(k) is not None:
+                        self.__setattr__(k, v)
+                except Exception:
+                    pass

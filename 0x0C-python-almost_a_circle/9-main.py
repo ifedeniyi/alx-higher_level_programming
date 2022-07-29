@@ -15,6 +15,7 @@ if __name__ == "__main__":
     print(s2)
     print(s2.area())
     s2.display()
+    print(s2.size)
 
     print("---")
 

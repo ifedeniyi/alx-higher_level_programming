@@ -143,6 +143,21 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(rect.x, 2)
         self.assertEqual(rect.y, 2)
 
+        rect.update(width=30, height=5)
+        self.assertEqual(rect.width, 30)
+        self.assertEqual(rect.height, 5)
+
+        rect.update(x=3, y=1)
+        self.assertEqual(rect.x, 3)
+        self.assertEqual(rect.y, 1)
+
+        rect.update(5, 15, 4, x=4, y=2)
+        self.assertEqual(rect.id, 5)
+        self.assertEqual(rect.width, 15)
+        self.assertEqual(rect.height, 4)
+        self.assertEqual(rect.x, 3)
+        self.assertEqual(rect.y, 1)
+
     def test_failing_update_rectangle(self):
         """Tests failing cases for updating a `Rectangle`
         instance dynamically."""
@@ -165,3 +180,7 @@ class TestRectangle(unittest.TestCase):
             rect.update(2, 25, 10, "wardell")
         with self.assertRaises(TypeError):
             rect.update(2, 25, 10, 2, "wardell")
+        rect.update(25, 15, x=4, y=2)
+        with self.assertRaises(AssertionError):
+            self.assertEqual(rect.x, 4)
+            self.assertEqual(rect.y, 2)

@@ -3,6 +3,7 @@
 
 It defines one class, `Rectangle(Base).`
 """
+from typing import Dict
 from models.base import Base
 
 

@@ -11,6 +11,9 @@ from models.base import Base
 class TestRectangle(unittest.TestCase):
     """Test cases for the `Rectangle` class."""
 
+    def tearDown(self):
+        Rectangle.__nb_objects = 0
+
     def test_complete_args(self):
         """Tests with complete args"""
 
@@ -194,3 +197,20 @@ class TestRectangle(unittest.TestCase):
         self.assertDictEqual(
             r2.to_dictionary(), {
                 'x': 0, 'y': 0, 'id': 15, 'height': 20, 'width': 10})
+
+        r1 = Rectangle(10, 20, 1, 2)
+        r1_dict = r1.to_dictionary()
+        self.assertIsInstance(r1_dict, dict)
+
+        r2 = Rectangle(5, 25)
+        r2.update(**r1_dict)
+        self.assertDictEqual(r1_dict, r2.to_dictionary())
+
+    def test_to_json(self):
+        """Tests serializing a dictionary to JSON using `to_dictionary()`."""
+
+        r1 = Rectangle(10, 7, 2, 8)
+        dict1 = r1.to_dictionary()
+        json_dict = Rectangle.to_json_string([dict1])
+        self.assertIsInstance(dict1, dict)
+        self.assertIsInstance(json_dict, str)

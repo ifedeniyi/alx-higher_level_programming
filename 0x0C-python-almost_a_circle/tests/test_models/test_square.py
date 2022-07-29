@@ -115,11 +115,28 @@ class TestSquare(unittest.TestCase):
             self.assertEqual(sqr.y, 2)
 
     def test_rect_to_dict(self):
-        """Test building the dictionary representation of a `Square.`"""
+        """Tests building the dictionary representation of a `Square.`"""
 
         s1 = Square(10, 2, 1, 9)
         s2 = Square(10)
         self.assertDictEqual(
             s1.to_dictionary(), {'id': 9, 'x': 2, 'size': 10, 'y': 1})
         self.assertDictEqual(
-            s2.to_dictionary(), {'id': 30, 'x': 0, 'size': 10, 'y': 0})
+            s2.to_dictionary(), {'id': 33, 'x': 0, 'size': 10, 'y': 0})
+
+        s1 = Square(10, 2, 1)
+        s1_dict = s1.to_dictionary()
+        self.assertIsInstance(s1_dict, dict)
+
+        s2 = Square(1, 1)
+        s2.update(**s1_dict)
+        self.assertDictEqual(s1_dict, s2.to_dictionary())
+
+    def test_to_json(self):
+        """Tests serializing a dictionary to JSON using `to_dictionary()`."""
+
+        s1 = Square(10, 7, 2, 8)
+        dict1 = s1.to_dictionary()
+        json_dict = Square.to_json_string([dict1])
+        self.assertIsInstance(dict1, dict)
+        self.assertIsInstance(json_dict, str)

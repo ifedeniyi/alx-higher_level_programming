@@ -5,13 +5,11 @@ import io
 import unittest
 import contextlib
 from models.rectangle import Rectangle
+from models.base import Base
 
 
 class TestRectangle(unittest.TestCase):
     """Test cases for the `Rectangle` class."""
-
-    def tearDown(self):
-        Rectangle.__nb_objects = 0
 
     def test_complete_args(self):
         """Tests with complete args"""
@@ -184,3 +182,15 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(AssertionError):
             self.assertEqual(rect.x, 4)
             self.assertEqual(rect.y, 2)
+
+    def test_rect_to_dict(self):
+        """"""
+
+        r1 = Rectangle(10, 2, 1, 9)
+        r2 = Rectangle(10, 20)
+        self.assertDictEqual(
+            r1.to_dictionary(), {
+                'x': 1, 'y': 9, 'id': 14, 'height': 2, 'width': 10})
+        self.assertDictEqual(
+            r2.to_dictionary(), {
+                'x': 0, 'y': 0, 'id': 15, 'height': 20, 'width': 10})

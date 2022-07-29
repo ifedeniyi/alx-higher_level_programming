@@ -150,6 +150,12 @@ class Rectangle(Base):
                 except Exception:
                     pass
 
+    def to_dictionary(self):
+        """Returns the dictionary representation of a `Rectangle`."""
+
+        attrs = ["x", "y", "id", "height", "width"]
+        return {x: self.__getattribute__(x) for x in attrs}
+
     def __str__(self):
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.x, self.y, self.width, self.height)

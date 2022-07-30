@@ -244,3 +244,19 @@ class TestRectangle(unittest.TestCase):
             self.assertNotEqual(json_dict, [r1.to_dictionary()])
 
         os.remove("Rectangle.json")
+
+    def test_create_instance(self):
+        """Tests dynamically creating new instance from a dictionary."""
+
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        r2_dictionary = r2.to_dictionary()
+
+        self.assertIsInstance(r2, Rectangle)
+        self.assertEqual(r2.width, r1.width)
+        self.assertEqual(r2.height, r1.height)
+        self.assertEqual(r2.x, r1.x)
+        self.assertEqual(r2.y, r1.y)
+        self.assertEqual(r2.id, r1.id)
+        self.assertDictEqual(r1_dictionary, r2_dictionary)

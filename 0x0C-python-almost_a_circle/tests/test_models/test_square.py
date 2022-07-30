@@ -16,31 +16,31 @@ class TestSquare(unittest.TestCase):
     def test_complete_args(self):
         """Tests with complete args"""
 
-        r1 = Square(10, 16, 4, "A")
-        r2 = Square(5, 0, 0)
-        self.assertEqual(r1.width, 10)
-        self.assertEqual(r1.height, 10)
-        self.assertEqual(r1.x, 16)
-        self.assertEqual(r1.y, 4)
-        self.assertEqual(r1.id, "A")
-        self.assertEqual(r2.x, 0)
-        self.assertEqual(r2.y, 0)
+        s1 = Square(10, 16, 4, "A")
+        s2 = Square(5, 0, 0)
+        self.assertEqual(s1.width, 10)
+        self.assertEqual(s1.height, 10)
+        self.assertEqual(s1.x, 16)
+        self.assertEqual(s1.y, 4)
+        self.assertEqual(s1.id, "A")
+        self.assertEqual(s2.x, 0)
+        self.assertEqual(s2.y, 0)
 
     def test_access_private_attrs(self):
         """Tests failure to access private attributes"""
 
-        r1 = Square(15, 16, 4, 1)
+        s1 = Square(15, 16, 4, 1)
 
         with self.assertRaises(AttributeError):
-            r1.__width
+            s1.__width
         with self.assertRaises(AttributeError):
-            r1.__height
+            s1.__height
         with self.assertRaises(AttributeError):
-            r1.__x
+            s1.__x
         with self.assertRaises(AttributeError):
-            r1.__y
+            s1.__y
         with self.assertRaises(AttributeError):
-            r1.__nb_objects
+            s1.__nb_objects
 
     def test_invalid_args(self):
         """Tests incomplete positional arguments"""
@@ -168,3 +168,18 @@ class TestSquare(unittest.TestCase):
             self.assertNotEqual(json_dict, [s1.to_dictionary()])
 
         os.remove("Square.json")
+
+    def test_create_instance(self):
+        """Tests dynamically creating new instance from a dictionary."""
+
+        s1 = Square(3, 5, 1)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+        s2_dictionary = s2.to_dictionary()
+
+        self.assertIsInstance(s2, Square)
+        self.assertEqual(s2.size, s1.size)
+        self.assertEqual(s2.x, s1.x)
+        self.assertEqual(s2.y, s1.y)
+        self.assertEqual(s2.id, s1.id)
+        self.assertDictEqual(s1_dictionary, s2_dictionary)

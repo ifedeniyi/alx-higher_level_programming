@@ -2,30 +2,34 @@
 """Unit tests for the `rectangle` module.
 """
 import io
+import json
+import os
 import unittest
 import contextlib
 from models.rectangle import Rectangle
-from models.base import Base
 
 
 class TestRectangle(unittest.TestCase):
     """Test cases for the `Rectangle` class."""
 
     def tearDown(self):
-        Rectangle.__nb_objects = 0
+        Rectangle.reset_obj_count()
 
     def test_complete_args(self):
         """Tests with complete args"""
 
         r1 = Rectangle(10, 5, 16, 4, "A")
-        r2 = Rectangle(10, 5, 0, 0)
+        r2 = Rectangle(20, 10)
         self.assertEqual(r1.width, 10)
         self.assertEqual(r1.height, 5)
         self.assertEqual(r1.x, 16)
         self.assertEqual(r1.y, 4)
         self.assertEqual(r1.id, "A")
+        self.assertEqual(r2.width, 20)
+        self.assertEqual(r2.height, 10)
         self.assertEqual(r2.x, 0)
         self.assertEqual(r2.y, 0)
+        self.assertEqual(r2.id, 1)
 
     def test_access_private_attrs(self):
         """Tests failure to access private attributes"""
@@ -193,10 +197,10 @@ class TestRectangle(unittest.TestCase):
         r2 = Rectangle(10, 20)
         self.assertDictEqual(
             r1.to_dictionary(), {
-                'x': 1, 'y': 9, 'id': 14, 'height': 2, 'width': 10})
+                'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10})
         self.assertDictEqual(
             r2.to_dictionary(), {
-                'x': 0, 'y': 0, 'id': 15, 'height': 20, 'width': 10})
+                'x': 0, 'y': 0, 'id': 2, 'height': 20, 'width': 10})
 
         r1 = Rectangle(10, 20, 1, 2)
         r1_dict = r1.to_dictionary()
@@ -214,3 +218,19 @@ class TestRectangle(unittest.TestCase):
         json_dict = Rectangle.to_json_string([dict1])
         self.assertIsInstance(dict1, dict)
         self.assertIsInstance(json_dict, str)
+
+    def test_save_to_file(self):
+        """Tests saving a list of `Rectangle` instances to a JSON file."""
+
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([r1, r2])
+
+        with open("Rectangle.json", "r") as f:
+            json_dict = json.load(f)
+
+            self.assertEqual(
+                json_dict, [r1.to_dictionary(), r2.to_dictionary()])
+            self.assertNotEqual(json_dict, [r1.to_dictionary()])
+
+        os.remove("Rectangle.json")

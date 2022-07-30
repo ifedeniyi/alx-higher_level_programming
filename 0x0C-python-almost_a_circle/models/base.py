@@ -41,6 +41,12 @@ class Base:
 
         return json.dumps(list_dictionaries)
 
+    @staticmethod
+    def reset_obj_count():
+        """Reset the private class attribute `__nb_objects`."""
+
+        Base.__nb_objects = 0
+
     @classmethod
     def save_to_file(cls, list_objs):
         """Writes the JSON string representation of `list_objs` to a file.

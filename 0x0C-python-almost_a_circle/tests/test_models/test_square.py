@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 """Unit tests for the `square` module.
 """
+from curses.textpad import rectangle
+import json
+import os
 import unittest
 from models.square import Square
 
@@ -9,7 +12,7 @@ class TestSquare(unittest.TestCase):
     """Test cases for the `Square` class."""
 
     def tearDown(self):
-        Square.__nb_objects = 0
+        Square.reset_obj_count()
 
     def test_complete_args(self):
         """Tests with complete args"""
@@ -122,7 +125,7 @@ class TestSquare(unittest.TestCase):
         self.assertDictEqual(
             s1.to_dictionary(), {'id': 9, 'x': 2, 'size': 10, 'y': 1})
         self.assertDictEqual(
-            s2.to_dictionary(), {'id': 33, 'x': 0, 'size': 10, 'y': 0})
+            s2.to_dictionary(), {'id': 1, 'x': 0, 'size': 10, 'y': 0})
 
         s1 = Square(10, 2, 1)
         s1_dict = s1.to_dictionary()
@@ -140,3 +143,19 @@ class TestSquare(unittest.TestCase):
         json_dict = Square.to_json_string([dict1])
         self.assertIsInstance(dict1, dict)
         self.assertIsInstance(json_dict, str)
+
+    def test_save_to_file(self):
+        """Tests saving a list of `Square` instances to a JSON file."""
+
+        s1 = Square(10, 2, 3)
+        s2 = Square(4)
+        Square.save_to_file([s1, s2])
+
+        with open("Square.json", "r") as f:
+            json_dict = json.load(f)
+
+            self.assertEqual(
+                json_dict, [s1.to_dictionary(), s2.to_dictionary()])
+            self.assertNotEqual(json_dict, [s1.to_dictionary()])
+
+        os.remove("Square.json")

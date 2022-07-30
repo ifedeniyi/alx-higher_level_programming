@@ -183,3 +183,30 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s2.y, s1.y)
         self.assertEqual(s2.id, s1.id)
         self.assertDictEqual(s1_dictionary, s2_dictionary)
+
+    def test_load_from_file(self):
+        """Tests loading list of instances from JSON file and
+        dynamically creating new instance from loaded list."""
+
+        s1 = Square(3, 5, 1)
+        s2 = Square(20, 1, 2, 3)
+        input_dicts = [s1, s2]
+
+        Square.save_to_file(input_dicts)
+        output_dicts = Square.load_from_file()
+
+        self.assertIsInstance(output_dicts[0], Square)
+        self.assertIsInstance(output_dicts[1], Square)
+
+        self.assertEqual(output_dicts[0].width, 3)
+        self.assertEqual(output_dicts[0].height, 3)
+        self.assertEqual(output_dicts[0].size, 3)
+        self.assertEqual(output_dicts[0].x, 5)
+        self.assertEqual(output_dicts[0].y, 1)
+
+        self.assertEqual(output_dicts[1].width, 20)
+        self.assertEqual(output_dicts[1].height, 20)
+        self.assertEqual(output_dicts[1].size, 20)
+        self.assertEqual(output_dicts[1].x, 1)
+        self.assertEqual(output_dicts[1].y, 2)
+        self.assertEqual(output_dicts[1].id, 3)

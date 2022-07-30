@@ -260,3 +260,27 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r2.y, r1.y)
         self.assertEqual(r2.id, r1.id)
         self.assertDictEqual(r1_dictionary, r2_dictionary)
+
+    def test_load_from_file(self):
+        """Tests loading list of instances from JSON file and
+        dynamically creating new instance from loaded list."""
+
+        r1 = Rectangle(3, 5, 1)
+        r2 = Rectangle(20, 10, 2, 3)
+        input_dicts = [r1, r2]
+
+        Rectangle.save_to_file(input_dicts)
+        output_dicts = Rectangle.load_from_file()
+
+        self.assertIsInstance(output_dicts[0], Rectangle)
+        self.assertIsInstance(output_dicts[1], Rectangle)
+        self.assertEqual(output_dicts[0].width, 3)
+        self.assertEqual(output_dicts[0].height, 5)
+        self.assertEqual(output_dicts[0].x, 1)
+        self.assertEqual(output_dicts[0].y, 0)
+
+        self.assertEqual(output_dicts[1].width, 20)
+        self.assertEqual(output_dicts[1].height, 10)
+        self.assertEqual(output_dicts[1].x, 2)
+        self.assertEqual(output_dicts[1].y, 3)
+        self.assertEqual(output_dicts[1].id, 2)

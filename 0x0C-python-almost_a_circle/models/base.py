@@ -66,7 +66,7 @@ class Base:
         """Writes the JSON string representation of `list_objs` to a file.
 
         Args:
-            list_objs (:obj:`dict` of `list`): a list of instances
+            list_objs (:obj:`Object` of `list`): a list of instances
             of the `Base` class or it's sub-classes.
         """
 

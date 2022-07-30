@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """Unit tests for the `square` module.
 """
-from curses.textpad import rectangle
 import json
 import os
 import unittest
@@ -136,13 +135,23 @@ class TestSquare(unittest.TestCase):
         self.assertDictEqual(s1_dict, s2.to_dictionary())
 
     def test_to_json(self):
-        """Tests serializing a dictionary to JSON using `to_dictionary()`."""
+        """Tests serializing an object to JSON using `to_json_string()`."""
 
         s1 = Square(10, 7, 2, 8)
         dict1 = s1.to_dictionary()
         json_dict = Square.to_json_string([dict1])
         self.assertIsInstance(dict1, dict)
         self.assertIsInstance(json_dict, str)
+
+    def test_from_json(self):
+        """Tests deserializing an obj from JSON using `from_json_string()`."""
+
+        s1 = Square(10, 7, 2, 8)
+        dict1 = s1.to_dictionary()
+        json_dict = Square.to_json_string([dict1])
+        self.assertIsInstance(dict1, dict)
+        self.assertIsInstance(json_dict, str)
+        self.assertEqual([dict1], Square.from_json_string(json_dict))
 
     def test_save_to_file(self):
         """Tests saving a list of `Square` instances to a JSON file."""

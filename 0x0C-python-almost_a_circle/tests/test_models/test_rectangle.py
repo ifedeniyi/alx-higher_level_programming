@@ -211,13 +211,23 @@ class TestRectangle(unittest.TestCase):
         self.assertDictEqual(r1_dict, r2.to_dictionary())
 
     def test_to_json(self):
-        """Tests serializing a dictionary to JSON using `to_dictionary()`."""
+        """Tests serializing an object to JSON using `to_json_string()`."""
 
         r1 = Rectangle(10, 7, 2, 8)
         dict1 = r1.to_dictionary()
         json_dict = Rectangle.to_json_string([dict1])
         self.assertIsInstance(dict1, dict)
         self.assertIsInstance(json_dict, str)
+
+    def test_from_json(self):
+        """Tests deserializing an obj from JSON using `from_json_string()`."""
+
+        r1 = Rectangle(10, 5, 7, 2, 8)
+        dict1 = r1.to_dictionary()
+        json_dict = Rectangle.to_json_string([dict1])
+        self.assertIsInstance(dict1, dict)
+        self.assertIsInstance(json_dict, str)
+        self.assertEqual([dict1], Rectangle.from_json_string(json_dict))
 
     def test_save_to_file(self):
         """Tests saving a list of `Rectangle` instances to a JSON file."""

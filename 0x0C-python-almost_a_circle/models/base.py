@@ -29,6 +29,12 @@ class Base:
             self.id = Base.__nb_objects
 
     @staticmethod
+    def reset_obj_count():
+        """Reset the private class attribute `__nb_objects`."""
+
+        Base.__nb_objects = 0
+
+    @staticmethod
     def to_json_string(list_dictionaries):
         """Returns the JSON string representation of `list_dictionaries`.
 
@@ -42,10 +48,17 @@ class Base:
         return json.dumps(list_dictionaries)
 
     @staticmethod
-    def reset_obj_count():
-        """Reset the private class attribute `__nb_objects`."""
+    def from_json_string(json_string):
+        """Returns the object representation of `json_string`.
 
-        Base.__nb_objects = 0
+        Args:
+            json_string (str): a JSON string representation of an object.
+        """
+
+        if json_string is None:
+            return []
+
+        return json.loads(json_string)
 
     @classmethod
     def save_to_file(cls, list_objs):

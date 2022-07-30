@@ -76,3 +76,12 @@ class Base:
                     dict_list.append(item.to_dictionary())
 
             f.write(cls.to_json_string(dict_list))
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Dynamically initializes a new instance with
+        values from `dictionary`."""
+
+        inst = cls(*[1 for _ in dictionary])
+        inst.update(**dictionary)
+        return inst

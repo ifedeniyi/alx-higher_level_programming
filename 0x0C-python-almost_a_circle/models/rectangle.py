@@ -25,6 +25,8 @@ class Rectangle(Base):
         id (int): the id for an instance of the `Rectangle` instance
     """
 
+    field_names = ["id", "width", "height", "x", "y"]
+
     def __init__(self, width, height, x=0, y=0, id=None):
         super().__init__(id)
         self.width = width
@@ -131,6 +133,8 @@ class Rectangle(Base):
 
         argc = len(args)
         kwargc = len(kwargs)
+        print("kwargs", kwargs)
+        print("type kwargs", type(kwargs['id']))
 
         if argc > 0:
             self.id = args[0]
@@ -146,8 +150,9 @@ class Rectangle(Base):
             for k, v in kwargs.items():
                 try:
                     if self.__getattribute__(k) is not None:
-                        self.__setattr__(k, v)
-                except Exception:
+                        self.__setattr__(k, int(v) if str.isalnum(v) else v)
+                except Exception as e:
+                    print(e)
                     pass
 
     def to_dictionary(self):

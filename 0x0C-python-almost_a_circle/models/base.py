@@ -3,6 +3,7 @@
 
 It defines one class, `Base`.
 """
+import csv
 import json
 import os
 
@@ -86,6 +87,7 @@ class Base:
 
         inst = cls(*[1 for _ in dictionary])
         inst.update(**dictionary)
+        # print("inst 2 dict: ", inst.to_dictionary())
         return inst
 
     @classmethod
@@ -100,3 +102,30 @@ class Base:
         with open("{}.json".format(cls.__name__), 'r') as f:
             dict_list = cls.from_json_string(f.read())
             return [cls.create(**d) for d in dict_list]
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Writes the CSV string representation of `list_objs` to a file.
+
+        Args:
+            list_objs (:obj:`Object` of `list`): a list of instances
+            of the `Base` class or it's sub-classes.
+        """
+
+        with open('{}.csv'.format(cls.__name__), 'w', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=cls.field_names)
+            writer.writeheader()
+
+            for obj in list_objs:
+                writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Loads the CSV string representation of `list_objs` from a file,
+        and converts it to a list of instances.
+        """
+
+        with open('{}.csv'.format(cls.__name__), newline='') as f:
+            reader = csv.DictReader(f)
+
+            return [cls.create(**row) for row in reader]

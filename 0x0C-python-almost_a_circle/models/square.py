@@ -24,6 +24,8 @@ class Square(Rectangle):
         id (int): the id for an instance of the `Rectangle` instance
     """
 
+    field_names = ["id", "size", "x", "y"]
+
     def __init__(self, size, x=0, y=0, id=None):
         super().__init__(size, size, x, y, id)
         self.size = size
@@ -73,8 +75,9 @@ class Square(Rectangle):
             for k, v in kwargs.items():
                 try:
                     if self.__getattribute__(k) is not None:
-                        self.__setattr__(k, v)
-                except Exception:
+                        self.__setattr__(k, int(v) if str.isalnum(v) else v)
+                except Exception as e:
+                    print(e)
                     pass
 
     def to_dictionary(self):

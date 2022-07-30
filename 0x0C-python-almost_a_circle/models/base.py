@@ -80,8 +80,19 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """Dynamically initializes a new instance with
-        values from `dictionary`."""
+        values from `dictionary`.
+        """
 
         inst = cls(*[1 for _ in dictionary])
         inst.update(**dictionary)
         return inst
+
+    @classmethod
+    def load_from_file(cls):
+        """Loads list of instance dictionaries from file,
+        and converts to a list of instances.
+        """
+
+        with open("{}.json".format(cls.__name__), 'r') as f:
+            dict_list = cls.from_json_string(f.read())
+            return [cls.create(**d) for d in dict_list]

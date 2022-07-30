@@ -4,6 +4,7 @@
 It defines one class, `Base`.
 """
 import json
+import os
 
 
 class Base:
@@ -92,6 +93,9 @@ class Base:
         """Loads list of instance dictionaries from file,
         and converts to a list of instances.
         """
+
+        if not os.path.exists("{}.json".format(cls.__name__)):
+            return []
 
         with open("{}.json".format(cls.__name__), 'r') as f:
             dict_list = cls.from_json_string(f.read())

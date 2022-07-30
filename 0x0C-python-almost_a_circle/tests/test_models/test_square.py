@@ -210,3 +210,51 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(output_dicts[1].x, 1)
         self.assertEqual(output_dicts[1].y, 2)
         self.assertEqual(output_dicts[1].id, 3)
+
+    def test_load_from_csv(self):
+        """Tests loading list of instances from CSV file and
+        dynamically creating new instance from loaded list."""
+
+        s1 = Square(3, 5, 1)
+        s2 = Square(20, 10, 2, 3)
+        input_dicts = [s1, s2]
+
+        Square.save_to_file_csv(input_dicts)
+        output_dicts = Square.load_from_file_csv()
+
+        self.assertIsInstance(output_dicts[0], Square)
+        self.assertIsInstance(output_dicts[1], Square)
+
+        self.assertEqual(output_dicts[0].size, 3)
+        self.assertEqual(output_dicts[0].x, 5)
+        self.assertEqual(output_dicts[0].y, 1)
+        self.assertEqual(output_dicts[0].id, 1)
+
+        self.assertEqual(output_dicts[1].size, 20)
+        self.assertEqual(output_dicts[1].x, 10)
+        self.assertEqual(output_dicts[1].y, 2)
+        self.assertEqual(output_dicts[1].id, 3)
+
+    def test_save_to_csv(self):
+        """Tests saving a list of `Square` instances to a CSV file."""
+
+        s1 = Square(10, 7, 2, 8)
+        s2 = Square(2, 4)
+        Square.save_to_file_csv([s1, s2])
+
+        loaded_instance = Square.load_from_file_csv()
+        to_dict = [d.to_dictionary() for d in loaded_instance]
+
+        self.assertEqual(to_dict,
+                         [s1.to_dictionary(), s2.to_dictionary()])
+        self.assertEqual(s1.id, to_dict[0]['id'])
+        self.assertEqual(s1.x, to_dict[0]['x'])
+        self.assertEqual(s1.y, to_dict[0]['y'])
+        self.assertEqual(s1.size, to_dict[0]['size'])
+
+        self.assertEqual(s2.id, to_dict[1]['id'])
+        self.assertEqual(s2.x, to_dict[1]['x'])
+        self.assertEqual(s2.y, to_dict[1]['y'])
+        self.assertEqual(s2.size, to_dict[1]['size'])
+
+        os.remove("Square.csv")

@@ -284,3 +284,53 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(output_dicts[1].x, 2)
         self.assertEqual(output_dicts[1].y, 3)
         self.assertEqual(output_dicts[1].id, 2)
+
+    def test_load_from_csv(self):
+        """Tests loading list of instances from CSV file and
+        dynamically creating new instance from loaded list."""
+
+        r1 = Rectangle(3, 5, 1)
+        r2 = Rectangle(20, 10, 2, 3)
+        input_dicts = [r1, r2]
+
+        Rectangle.save_to_file_csv(input_dicts)
+        output_dicts = Rectangle.load_from_file_csv()
+
+        self.assertIsInstance(output_dicts[0], Rectangle)
+        self.assertIsInstance(output_dicts[1], Rectangle)
+        self.assertEqual(output_dicts[0].width, 3)
+        self.assertEqual(output_dicts[0].height, 5)
+        self.assertEqual(output_dicts[0].x, 1)
+        self.assertEqual(output_dicts[0].y, 0)
+
+        self.assertEqual(output_dicts[1].width, 20)
+        self.assertEqual(output_dicts[1].height, 10)
+        self.assertEqual(output_dicts[1].x, 2)
+        self.assertEqual(output_dicts[1].y, 3)
+        self.assertEqual(output_dicts[1].id, 2)
+
+    def test_save_to_csv(self):
+        """Tests saving a list of `Rectangle` instances to a CSV file."""
+
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file_csv([r1, r2])
+
+        loaded_instance = Rectangle.load_from_file_csv()
+        to_dict = [d.to_dictionary() for d in loaded_instance]
+
+        self.assertEqual(to_dict,
+                         [r1.to_dictionary(), r2.to_dictionary()])
+        self.assertEqual(r1.id, to_dict[0]['id'])
+        self.assertEqual(r1.x, to_dict[0]['x'])
+        self.assertEqual(r1.y, to_dict[0]['y'])
+        self.assertEqual(r1.width, to_dict[0]['width'])
+        self.assertEqual(r1.height, to_dict[0]['height'])
+
+        self.assertEqual(r2.id, to_dict[1]['id'])
+        self.assertEqual(r2.x, to_dict[1]['x'])
+        self.assertEqual(r2.y, to_dict[1]['y'])
+        self.assertEqual(r2.width, to_dict[1]['width'])
+        self.assertEqual(r2.height, to_dict[1]['height'])
+
+        os.remove("Rectangle.csv")

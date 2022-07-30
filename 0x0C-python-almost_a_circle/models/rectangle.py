@@ -148,7 +148,7 @@ class Rectangle(Base):
             for k, v in kwargs.items():
                 try:
                     if self.__getattribute__(k) is not None:
-                        self.__setattr__(k, int(v) if str.isalnum(v) else v)
+                        self.__setattr__(k, int(v))
                 except Exception as e:
                     print(e)
                     pass

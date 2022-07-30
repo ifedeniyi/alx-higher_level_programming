@@ -87,7 +87,6 @@ class Base:
 
         inst = cls(*[1 for _ in dictionary])
         inst.update(**dictionary)
-        # print("inst 2 dict: ", inst.to_dictionary())
         return inst
 
     @classmethod

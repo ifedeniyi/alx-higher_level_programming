@@ -133,8 +133,6 @@ class Rectangle(Base):
 
         argc = len(args)
         kwargc = len(kwargs)
-        print("kwargs", kwargs)
-        print("type kwargs", type(kwargs['id']))
 
         if argc > 0:
             self.id = args[0]
